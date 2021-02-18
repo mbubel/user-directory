@@ -2,6 +2,7 @@ import { Component } from "react";
 import EmployeeTableData from "./EmployeeTableData";
 import API from "../Utils/API";
 
+
 class EmployeeTable extends Component {
   state = {
     results: [],
@@ -19,7 +20,7 @@ class EmployeeTable extends Component {
   render() {
     return (
       <div>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>Image</th>
