@@ -1,7 +1,6 @@
 function EmployeeTableData(props) {
   return (
     <>
-      {" "}
       {props.employeeList.map((result) => (
         <tr>
           <td>
