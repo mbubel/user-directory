@@ -2,7 +2,6 @@ import { Component } from "react";
 import EmployeeTableData from "./EmployeeTableData";
 import API from "../Utils/API";
 
-
 class EmployeeTable extends Component {
   state = {
     results: [],
@@ -12,9 +11,15 @@ class EmployeeTable extends Component {
     this.searchEmployees();
   }
   searchEmployees = () => {
-    API.search().then((res) =>
-      this.setState({ results: res.data.results })
-    );
+    API.search().then((res) => this.setState({ results: res.data.results }));
+  };
+
+  sortByName = () => {
+    this.setState({
+      results: [...this.state.results].sort((a, b) => {
+        return a.name.first.localeCompare(b.name.first);
+      }),
+    });
   };
 
   render() {
@@ -24,7 +29,7 @@ class EmployeeTable extends Component {
           <thead>
             <tr>
               <th>Image</th>
-              <th>Name</th>
+              <th onClick={this.sortByName}>Name</th>
               <th>Phone</th>
               <th>Email</th>
               <th>Dob</th>
