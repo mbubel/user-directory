@@ -1,31 +1,30 @@
-import { Component } from "react";
 import EmployeeTableData from "./EmployeeTableData";
+import "../styles/Navbar.css";
 
-class EmployeeTable extends Component {
-  state = {
-    results: [],
-  };
-
-  render() {
-    return (
-      <div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th onClick={this.props.sortByName}>Name</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Dob</th>
-            </tr>
-          </thead>
-          <tbody>
-            <EmployeeTableData employeeList={this.props.employeeList} />
-          </tbody>
-        </table>
-      </div>
-    );
-  }
+function EmployeeTable(props) {
+  return (
+    <div>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th className="name" onClick={props.sortByName}>
+              Name
+            </th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Dob</th>
+          </tr>
+        </thead>
+        <tbody>
+          <EmployeeTableData
+            employeeList={props.employeeList}
+            filteredEmployeeList={props.filteredEmployeeList}
+          />
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default EmployeeTable;

@@ -8,6 +8,7 @@ import API from "./Utils/API";
 class App extends Component {
   state = {
     results: [],
+    filtered: "unfiltered",
   };
   componentDidMount() {
     API.search().then((res) => this.setState({ results: res.data.results }));
@@ -19,13 +20,25 @@ class App extends Component {
       }),
     });
   };
-
+  filterByName = () => {
+    const userSearch = document.querySelector("#search").value.toLowerCase();
+    const filteredEmployees = this.state.results.filter(
+      (employee) => employee.name.first.toLowerCase().indexOf(userSearch) > -1
+    );
+    this.setState({
+      filtered: filteredEmployees,
+    });
+  };
   render() {
     return (
       <div className="App">
         <Header />
-        <Navbar />
-        <EmployeeTable employeeList={this.state.results} sortByName = {this.sortByName}/>
+        <Navbar filterByName={this.filterByName} />
+        <EmployeeTable
+          employeeList={this.state.results}
+          sortByName={this.sortByName}
+          filteredEmployeeList={this.state.filtered}
+        />
       </div>
     );
   }
