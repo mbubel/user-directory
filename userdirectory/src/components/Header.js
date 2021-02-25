@@ -4,7 +4,7 @@ function Header() {
   return (
     <div className="header">
       <h1>Employee Directory</h1>
-      <p>Search for an employee using their first name, and list names alphabetically from A-Z.</p>
+      <p>Sort employee's by their first name, and then search for a specific employee!</p>
     </div>
   );
 }
